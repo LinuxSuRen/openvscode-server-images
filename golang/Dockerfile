@@ -4,6 +4,7 @@ FROM gitpod/openvscode-server:$GITPOD
 ARG GO=1.22.4
 ENV OPENVSCODE_SERVER_ROOT="/home/.openvscode-server"
 ENV OPENVSCODE="${OPENVSCODE_SERVER_ROOT}/bin/openvscode-server"
+LABEL org.opencontainers.image.source https://github.com/LinuxSuRen/openvscode-server-images
 
 SHELL ["/bin/bash", "-c"]
 RUN \
