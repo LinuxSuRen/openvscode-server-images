@@ -18,6 +18,7 @@ RUN \
     && rm -rf go${GO}linux-amd64.tar.gz \
     && echo export PATH=$PATH:/home/.openvscode-server/go/bin > ${OPENVSCODE_SERVER_ROOT}/.bashrc \
     && echo export GOPROXY=https://goproxy.cn,direct >> ${OPENVSCODE_SERVER_ROOT}/.bashrc \
+    && echo export GOROOT=/home/.openvscode-server/go/bin >> ${OPENVSCODE_SERVER_ROOT}/.bashrc \
     # List the extensions in this array
     && exts=(\
         # From https://open-vsx.org/ registry directly
