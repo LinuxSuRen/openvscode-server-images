@@ -14,6 +14,10 @@ env:
 
 jobs:
   image:
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [golang, nodejs]
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
@@ -39,13 +43,13 @@ jobs:
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: |
-            ${{ env.REGISTRY }}/linuxsuren/openvscode-server-golang
-            ${{ env.REGISTRY_DOCKERHUB }}/linuxsuren/openvscode-server-golang
+            ${{ env.REGISTRY }}/linuxsuren/openvscode-server-${{ matrix.os }}
+            ${{ env.REGISTRY_DOCKERHUB }}/linuxsuren/openvscode-server-${{ matrix.os }}
       - name: Build and push Docker image
         id: build-and-push
         uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:
-          context: golang
+          context: ${{ matrix.os }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
