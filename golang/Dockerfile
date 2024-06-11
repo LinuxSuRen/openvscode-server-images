@@ -1,5 +1,5 @@
-FROM ghcr.io/containerd/nerdctl:main AS nerdctl
 ARG GITPOD=latest
+FROM ghcr.io/containerd/nerdctl:main AS nerdctl
 FROM gitpod/openvscode-server:$GITPOD
 
 ARG GO=1.22.4
