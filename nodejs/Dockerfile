@@ -12,8 +12,6 @@ RUN \
     && curl -fsSL https://fnm.vercel.app/install | bash \
     && source /home/workspace/.bashrc \
     && fnm use --install-if-missing 20 \
-    && sudo useradd -r -g root gitpod \
-    && sudo usermod -d /home/workspace gitpod \
     # List the extensions in this array
     && exts=(\
         # From https://open-vsx.org/ registry directly
@@ -23,4 +21,3 @@ RUN \
     )\
     # Install the $exts
     && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done
-USER gitpod
