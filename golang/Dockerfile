@@ -7,6 +7,7 @@ ENV OPENVSCODE_SERVER_ROOT="/home/.openvscode-server"
 ENV OPENVSCODE="${OPENVSCODE_SERVER_ROOT}/bin/openvscode-server"
 LABEL org.opencontainers.image.source https://github.com/LinuxSuRen/openvscode-server-images
 
+USER root
 SHELL ["/bin/bash", "-c"]
 COPY --from=nerdctl /usr/local/bin/nerdctl /usr/local/bin/nerdctl
 RUN \
@@ -19,10 +20,10 @@ RUN \
     && wget https://go.dev/dl/go${GO}.linux-amd64.tar.gz \
     && tar -C ${OPENVSCODE_SERVER_ROOT} -xzf go${GO}.linux-amd64.tar.gz \
     && rm -rf go${GO}linux-amd64.tar.gz \
-    && echo export PATH=$PATH:/home/.openvscode-server/go/bin > ${OPENVSCODE_SERVER_ROOT}/.bashrc \
-    && echo export GOPROXY=https://goproxy.cn,direct >> ${OPENVSCODE_SERVER_ROOT}/.bashrc \
-    && echo export GOROOT=/home/.openvscode-server/go >> ${OPENVSCODE_SERVER_ROOT}/.bashrc \
-    && echo alias docker=nerdctl >> ${OPENVSCODE_SERVER_ROOT}/.bashrc \
+    && sudo echo export PATH=$PATH:/home/.openvscode-server/go/bin >> /etc/profile \
+    && sudo echo export GOPROXY=https://goproxy.cn,direct >> /etc/profile \
+    && sudo echo export GOROOT=/home/.openvscode-server/go >> /etc/profile \
+    && sudo echo alias docker=nerdctl >> /etc/profile \
     # List the extensions in this array
     && exts=(\
         # From https://open-vsx.org/ registry directly
@@ -32,3 +33,5 @@ RUN \
     )\
     # Install the $exts
     && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done
+
+USER openvscode-server
