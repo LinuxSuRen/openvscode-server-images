@@ -19,6 +19,8 @@ RUN \
     && echo export PATH=$PATH:/home/.openvscode-server/go/bin > ${OPENVSCODE_SERVER_ROOT}/.bashrc \
     && echo export GOPROXY=https://goproxy.cn,direct >> ${OPENVSCODE_SERVER_ROOT}/.bashrc \
     && echo export GOROOT=/home/.openvscode-server/go >> ${OPENVSCODE_SERVER_ROOT}/.bashrc \
+    && sudo useradd -r -g root gitpod \
+    && sudo usermod -d /home/workspace gitpod \
     # List the extensions in this array
     && exts=(\
         # From https://open-vsx.org/ registry directly
@@ -27,4 +29,5 @@ RUN \
         Alibaba-Cloud.tongyi-lingma \
     )\
     # Install the $exts
-    && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done \
+    && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done
+USER gitpod
