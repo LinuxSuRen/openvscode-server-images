@@ -12,7 +12,7 @@ SHELL ["/bin/bash", "-c"]
 COPY --from=nerdctl /usr/local/bin/nerdctl /usr/local/bin/nerdctl
 RUN \
     # install necessary tools
-    sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 --no-install-recommends  -y \
+    sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools --no-install-recommends  -y \
     && sudo install -m 0755 -d /etc/apt/keyrings \
     # Create a tmp dir for downloading
     && tdir=/tmp/exts && mkdir -p "${tdir}" && cd "${tdir}" \
