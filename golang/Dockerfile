@@ -29,6 +29,7 @@ RUN \
         # From https://open-vsx.org/ registry directly
         gitpod.gitpod-theme \
         golang.go \
+        ms-vscode.makefile-tools \
         Alibaba-Cloud.tongyi-lingma \
     )\
     # Install the $exts
