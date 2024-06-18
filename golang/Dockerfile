@@ -31,8 +31,11 @@ RUN \
         golang.go \
         ms-vscode.makefile-tools \
         Alibaba-Cloud.tongyi-lingma \
+        linuxsuren.webhook \
     )\
     # Install the $exts
-    && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done
+    && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done \
+    # Backup data of openvscode-server
+    && cp /home/workspace/.openvscode-server /home/workspace/.openvscode-server-back -r
 
 USER openvscode-server
