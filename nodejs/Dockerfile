@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-c"]
 SHELL ["/bin/bash", "-c"]
 RUN \
     # install necessary tools
-    sudo apt update -y && sudo apt install curl make vim keychain unzip -y \
+    sudo apt update -y && sudo apt install curl make vim keychain net-tools unzip -y \
     && curl -fsSL https://fnm.vercel.app/install | bash \
     && source /home/workspace/.bashrc \
     && fnm use --install-if-missing 20 \
