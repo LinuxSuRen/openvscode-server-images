@@ -36,6 +36,6 @@ RUN \
     # Install the $exts
     && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done \
     # Backup data of openvscode-server
-    && cp /home/workspace/.openvscode-server /home/workspace/.openvscode-server-back -r
+    && cp /home/workspace/.openvscode-server /var/data/openvscode-server-back -r
 
 USER openvscode-server
