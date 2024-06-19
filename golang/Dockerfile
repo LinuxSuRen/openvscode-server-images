@@ -23,6 +23,8 @@ RUN \
     && sudo echo export PATH=$PATH:/home/.openvscode-server/go/bin >> /etc/profile \
     && sudo echo export GOPROXY=https://goproxy.cn,direct >> /etc/profile \
     && sudo echo export GOROOT=/home/.openvscode-server/go >> /etc/profile \
+    && source /etc/profile \
+    && go install -v github.com/go-delve/delve/cmd/dlv@latest \
     && sudo echo alias docker=nerdctl >> /etc/profile \
     # List the extensions in this array
     && exts=(\
