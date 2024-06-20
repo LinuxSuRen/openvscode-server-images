@@ -2,7 +2,6 @@ ARG GITPOD=latest
 FROM ghcr.io/containerd/nerdctl:main AS nerdctl
 FROM gitpod/openvscode-server:$GITPOD
 
-ARG GO=1.22.4
 ENV OPENVSCODE_SERVER_ROOT="/home/.openvscode-server"
 ENV OPENVSCODE="${OPENVSCODE_SERVER_ROOT}/bin/openvscode-server"
 LABEL org.opencontainers.image.source https://github.com/LinuxSuRen/openvscode-server-images
@@ -24,6 +23,7 @@ RUN \
         # From https://open-vsx.org/ registry directly
         gitpod.gitpod-theme \
         redhat.java \
+        vscjava.vscode-java-pack \
         ms-vscode.makefile-tools \
         Alibaba-Cloud.tongyi-lingma \
         linuxsuren.webhook \
