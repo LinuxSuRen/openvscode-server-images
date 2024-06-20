@@ -26,6 +26,11 @@ RUN \
     && source /etc/profile \
     && go install -v github.com/go-delve/delve/cmd/dlv@latest \
     && sudo echo alias docker=nerdctl >> /etc/profile \
+    && sudo echo alias docker-compose="nerdctl compose" >> /etc/profile \
+    && curl -L https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz --output cni.tgz \
+    && sudo mkdir -p /opt/cni/bin \
+    && sudo tar -xzvf cni.tgz -C /opt/cni/bin/ \
+    && rm -rf cni.tgz \
     # List the extensions in this array
     && exts=(\
         # From https://open-vsx.org/ registry directly
