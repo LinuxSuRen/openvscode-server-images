@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tool: [golang, nodejs]
+        tool: [golang, nodejs, java]
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
