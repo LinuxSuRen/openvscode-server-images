@@ -28,9 +28,12 @@ RUN \
     && sudo echo alias docker=nerdctl >> /etc/profile \
     && sudo echo alias docker-compose="nerdctl compose" >> /etc/profile \
     && curl -L https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz --output cni.tgz \
+    && curl -L https://github.com/moby/buildkit/releases/download/v0.14.1/buildkit-v0.14.1.linux-amd64.tar.gz --output buildkit.tar.gz \
     && sudo mkdir -p /opt/cni/bin \
     && sudo tar -xzvf cni.tgz -C /opt/cni/bin/ \
+    && sudo tar -xzvf buildkit.tar.gz -C /usr/local/bin \
     && rm -rf cni.tgz \
+    && rm -rf buildkit.tar.gz \
     # List the extensions in this array
     && exts=(\
         # From https://open-vsx.org/ registry directly
