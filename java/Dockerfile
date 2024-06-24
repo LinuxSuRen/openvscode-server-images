@@ -11,10 +11,17 @@ SHELL ["/bin/bash", "-c"]
 COPY --from=nerdctl /usr/local/bin/nerdctl /usr/local/bin/nerdctl
 RUN \
     # install necessary tools
-    sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools openjdk-21-jdk maven --no-install-recommends  -y \
+    sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools openjdk-21-jdk maven gradle --no-install-recommends  -y \
     && sudo install -m 0755 -d /etc/apt/keyrings \
     # Create a tmp dir for downloading
     && tdir=/tmp/exts && mkdir -p "${tdir}" && cd "${tdir}" \
+    && curl -L https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz --output cni.tgz \
+    && curl -L https://github.com/moby/buildkit/releases/download/v0.14.1/buildkit-v0.14.1.linux-amd64.tar.gz --output buildkit.tar.gz \
+    && sudo mkdir -p /opt/cni/bin \
+    && sudo tar -xzvf cni.tgz -C /opt/cni/bin/ \
+    && sudo tar -xzvf buildkit.tar.gz -C /usr/local/bin \
+    && rm -rf cni.tgz \
+    && rm -rf buildkit.tar.gz \
     && sudo echo export GOROOT=/home/.openvscode-server/go >> /etc/profile \
     && sudo echo alias docker=nerdctl >> /etc/profile \
     && source /etc/profile \
