@@ -13,7 +13,7 @@ COPY --from=nerdctl /usr/local/bin/nerdctl /usr/local/bin/nerdctl
 RUN \
     # install necessary tools
     sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools python3-pip openjdk-21-jdk maven gradle --no-install-recommends -y \
-    && curl -fsSL https://fnm.vercel.app/install | bash \
+    && curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir /home/workspace/.openvscode-server/fnm \
     && source /home/workspace/.bashrc \
     && fnm use --install-if-missing 20 \
     && sudo install -m 0755 -d /etc/apt/keyrings \
