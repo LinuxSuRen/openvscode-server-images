@@ -46,6 +46,7 @@ RUN \
         vscjava.vscode-java-pack \
         golang.go \
         Vue.volar \
+        ms-python.python \
         ms-vscode.makefile-tools \
         Alibaba-Cloud.tongyi-lingma \
         linuxsuren.webhook \
