@@ -47,6 +47,7 @@ RUN \
         golang.go \
         Vue.volar \
         ms-python.python \
+        ms-azuretools.vscode-docker \
         ms-vscode.makefile-tools \
         Alibaba-Cloud.tongyi-lingma \
         linuxsuren.webhook \
