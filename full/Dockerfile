@@ -12,10 +12,12 @@ SHELL ["/bin/bash", "-c"]
 COPY --from=nerdctl /usr/local/bin/nerdctl /usr/local/bin/nerdctl
 RUN \
     # install necessary tools
-    sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools python3-pip openjdk-21-jdk maven gradle --no-install-recommends -y \
-    && curl -fsSL https://fnm.vercel.app/install | bash \
+    sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools unzip zip python3-pip openjdk-21-jdk maven gradle --no-install-recommends -y \
+    && curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir /home/workspace/.openvscode-server/fnm \
     && source /home/workspace/.bashrc \
     && fnm use --install-if-missing 20 \
+    && curl -s https://get.sdkman.io | bash \
+    && source "/home/workspace/.sdkman/bin/sdkman-init.sh" \
     && sudo install -m 0755 -d /etc/apt/keyrings \
     # Create a tmp dir for downloading
     && tdir=/tmp/exts && mkdir -p "${tdir}" && cd "${tdir}" \
@@ -46,6 +48,8 @@ RUN \
         vscjava.vscode-java-pack \
         golang.go \
         Vue.volar \
+        ms-python.python \
+        ms-azuretools.vscode-docker \
         ms-vscode.makefile-tools \
         Alibaba-Cloud.tongyi-lingma \
         linuxsuren.webhook \
