@@ -36,11 +36,10 @@ RUN \
     && sudo echo export PATH=$PATH:/home/.openvscode-server/go/bin >> /etc/profile \
     && sudo echo export GOPROXY=https://goproxy.cn,direct >> /etc/profile \
     && sudo echo export GOROOT=/home/.openvscode-server/go >> /etc/profile \
+    && sudo echo export MAVEN_OPTS="-Dmaven.repo.local=/home/workspace/.m2" >> /etc/profile \
     && source /etc/profile \
     && go install -v github.com/go-delve/delve/cmd/dlv@v1.22.1 \
     && go install golang.org/x/tools/gopls@v0.16.0 \
-    && sudo echo alias docker=nerdctl >> /etc/profile \
-    && sudo echo alias docker-compose="nerdctl compose" >> /etc/profile \
     && curl -L https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz --output cni.tgz \
     && curl -L https://github.com/moby/buildkit/releases/download/v0.14.1/buildkit-v0.14.1.linux-amd64.tar.gz --output buildkit.tar.gz \
     && sudo mkdir -p /opt/cni/bin \

@@ -25,7 +25,7 @@ RUN \
     && rm -rf cni.tgz \
     && rm -rf buildkit.tar.gz \
     && sudo echo export GOROOT=/home/.openvscode-server/go >> /etc/profile \
-    && sudo echo alias docker=nerdctl >> /etc/profile \
+    && sudo echo export MAVEN_OPTS="-Dmaven.repo.local=/home/workspace/.m2" >> /etc/profile \
     && source /etc/profile \
     # List the extensions in this array
     && exts=(\
