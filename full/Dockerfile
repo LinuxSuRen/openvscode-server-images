@@ -3,6 +3,7 @@ FROM ghcr.io/containerd/nerdctl:main AS nerdctl
 FROM gitpod/openvscode-server:$GITPOD
 
 ARG GO=1.22.4
+ARG GH_VERSION=2.52.0
 ENV OPENVSCODE_SERVER_ROOT="/home/.openvscode-server"
 ENV OPENVSCODE="${OPENVSCODE_SERVER_ROOT}/bin/openvscode-server"
 LABEL org.opencontainers.image.source https://github.com/LinuxSuRen/openvscode-server-images
@@ -42,11 +43,14 @@ RUN \
     && go install golang.org/x/tools/gopls@v0.16.0 \
     && curl -L https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz --output cni.tgz \
     && curl -L https://github.com/moby/buildkit/releases/download/v0.14.1/buildkit-v0.14.1.linux-amd64.tar.gz --output buildkit.tar.gz \
+    && curl -L https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz --output gh_${GH_VERSION}_linux_amd64.tar.gz \
     && sudo mkdir -p /opt/cni/bin \
     && sudo tar -xzvf cni.tgz -C /opt/cni/bin/ \
     && sudo tar -xzvf buildkit.tar.gz -C /usr/local/bin \
+    && sudo tar -C /usr/local/bin -xzvf gh_${GH_VERSION}_linux_amd64.tar.gz gh_${GH_VERSION}_linux_amd64/bin/gh --strip-components 2 \
     && rm -rf cni.tgz \
     && rm -rf buildkit.tar.gz \
+    && rm -rf gh_${GH_VERSION}_linux_amd64.tar.gz \
     # List the extensions in this array
     && exts=(\
         # From https://open-vsx.org/ registry directly
