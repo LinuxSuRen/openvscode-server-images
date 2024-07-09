@@ -30,7 +30,6 @@ RUN \
     && source /home/workspace/.bashrc \
     && fnm use --install-if-missing 20 \
     && curl -s https://get.sdkman.io | bash \
-    && source "/home/workspace/.sdkman/bin/sdkman-init.sh" \
     # Create a tmp dir for downloading
     && tdir=/tmp/exts && mkdir -p "${tdir}" && cd "${tdir}" \
     # Download via wget from $urls array.
@@ -41,6 +40,7 @@ RUN \
     && sudo echo export GOPROXY=https://goproxy.cn,direct >> /etc/profile \
     && sudo echo export GOROOT=/home/.openvscode-server/go >> /etc/profile \
     && sudo echo export MAVEN_OPTS="-Dmaven.repo.local=/home/workspace/.m2" >> /etc/profile \
+    && sudo echo source "/home/workspace/.sdkman/bin/sdkman-init.sh" >> /etc/profile \
     && source /etc/profile \
     && go install -v github.com/go-delve/delve/cmd/dlv@v1.22.1 \
     && go install golang.org/x/tools/gopls@v0.16.0 \
@@ -72,6 +72,7 @@ RUN \
     && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done \
     # Backup data of openvscode-server
     && mkdir /var/data \
-    && cp /home/workspace/.openvscode-server /var/data/openvscode-server-back -r
+    && cp /home/workspace/.openvscode-server /var/data/openvscode-server-back -r \
+    && cp /home/workspace/.sdkman /var/data/sdkman-back -r
 
 USER openvscode-server
