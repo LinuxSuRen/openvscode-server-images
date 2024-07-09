@@ -25,6 +25,7 @@ RUN \
         sudo tee /etc/apt/sources.list.d/docker.list > /dev/null \
     && sudo apt-get update \
     && sudo apt install docker-ce-cli docker-buildx-plugin docker-compose-plugin -y \
+    && rm -rf /etc/apt/sources.list.d/docker.list \
     && curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir /home/workspace/.openvscode-server/fnm \
     && source /home/workspace/.bashrc \
     && fnm use --install-if-missing 20 \
