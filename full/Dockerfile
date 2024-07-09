@@ -44,6 +44,7 @@ RUN \
     && source /etc/profile \
     && go install -v github.com/go-delve/delve/cmd/dlv@v1.22.1 \
     && go install golang.org/x/tools/gopls@v0.16.0 \
+    && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
     && curl -L https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz --output cni.tgz \
     && curl -L https://github.com/moby/buildkit/releases/download/v0.14.1/buildkit-v0.14.1.linux-amd64.tar.gz --output buildkit.tar.gz \
     && curl -L https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz --output gh_${GH_VERSION}_linux_amd64.tar.gz \
