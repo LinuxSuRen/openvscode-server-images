@@ -15,7 +15,7 @@ COPY --from=nerdctl /usr/local/bin/nerdctl /usr/local/bin/nerdctl
 COPY --from=HD /usr/local/bin/hd /usr/local/bin/hd
 RUN \
     # install necessary tools
-    sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools unzip zip python3-pip openjdk-21-jdk maven gradle --no-install-recommends -y \
+    sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools unzip zip python3-pip openjdk-21-jdk maven gradle zsh --no-install-recommends -y \
     && sudo install -m 0755 -d /etc/apt/keyrings \
     && sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc \
     && sudo chmod a+r /etc/apt/keyrings/docker.asc \
