@@ -42,6 +42,7 @@ RUN \
     && sudo echo export MAVEN_OPTS="-Dmaven.repo.local=/home/workspace/.m2" >> /etc/profile \
     && sudo echo source "/home/workspace/.sdkman/bin/sdkman-init.sh" >> /etc/profile \
     && source /etc/profile \
+    && echo eval "$(fnm env --use-on-cd)" >> /home/workspace/.zshrc \
     && go install -v github.com/go-delve/delve/cmd/dlv@v1.22.1 \
     && go install golang.org/x/tools/gopls@v0.16.0 \
     && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
@@ -74,6 +75,7 @@ RUN \
     # Backup data of openvscode-server
     && mkdir /var/data \
     && cp /home/workspace/.openvscode-server /var/data/openvscode-server-back -r \
-    && cp /home/workspace/.sdkman /var/data/sdkman-back -r
+    && cp /home/workspace/.sdkman /var/data/sdkman-back -r \
+    && cp /home/workspace /home/workspace-bak -r
 
 USER openvscode-server
