@@ -74,8 +74,9 @@ RUN \
     && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done \
     # Backup data of openvscode-server
     && mkdir /var/data \
-    && cp /home/workspace/.openvscode-server /var/data/openvscode-server-back -r \
-    && cp /home/workspace/.sdkman /var/data/sdkman-back -r \
-    && cp /home/workspace /home/workspace-bak -r
+    && cp /home/workspace/.openvscode-server /var/data/.openvscode-server -r \
+    && cp /home/workspace/.sdkman /var/data/.sdkman -r \
+    && cp /home/workspace/.bashrc /var/data/.bashrc \
+    && cp /home/workspace/.zshrc /var/data/.zshrc
 
 USER openvscode-server
