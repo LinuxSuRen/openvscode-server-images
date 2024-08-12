@@ -25,7 +25,9 @@ RUN \
     && for ext in "${exts[@]}"; do ${OPENVSCODE} --install-extension "${ext}"; done \
     # Backup data of openvscode-server
     && mkdir /var/data \
-    && cp /home/workspace/.openvscode-server /var/data/openvscode-server-back -r \
-    && cp /home/workspace/.cargo /var/data/.cargo -r
+    && cp /home/workspace/.openvscode-server /var/data/.openvscode-server -r \
+    && cp /home/workspace/.cargo /var/data/.cargo -r \
+    && cp /home/workspace/.rustup /var/data/.rustup -r \
+    && cp /home/workspace/.profile /var/data/.profile
 
 USER openvscode-server
