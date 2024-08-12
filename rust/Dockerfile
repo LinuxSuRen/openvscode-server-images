@@ -10,7 +10,7 @@ SHELL ["/bin/bash", "-c"]
 SHELL ["/bin/bash", "-c"]
 RUN \
     # install necessary tools
-    sudo apt update -y && sudo apt install curl make vim keychain net-tools unzip zip -y \
+    sudo apt update -y && sudo apt install curl make vim keychain net-tools unzip zip build-essential libssl-dev pkg-config -y \
     && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rust.sh \
     && chmod u+x rust.sh && ./rust.sh -y \
     # List the extensions in this array
