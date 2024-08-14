@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tool: [golang, nodejs, java, moon, rust, full]
+        tool: [golang, nodejs, java, moon, rust, rustwasm, full]
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
