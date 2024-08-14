@@ -1,5 +1,5 @@
 ARG GITPOD=latest
-FROM ghcr.io/containerd/nerdctl:main AS nerdctl
+FROM ghcr.io/linuxsuren/hd:v0.0.97 as HD
 FROM gitpod/openvscode-server:$GITPOD
 
 ENV OPENVSCODE_SERVER_ROOT="/home/.openvscode-server"
@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.source https://github.com/LinuxSuRen/openvscode-s
 
 USER root
 SHELL ["/bin/bash", "-c"]
-COPY --from=nerdctl /usr/local/bin/nerdctl /usr/local/bin/nerdctl
+COPY --from=HD /usr/local/bin/hd /usr/local/bin/hd
 RUN \
     # install necessary tools
     sudo apt update -y && sudo apt install ca-certificates curl make vim keychain python3 net-tools openjdk-21-jdk maven gradle unzip zip --no-install-recommends  -y \
