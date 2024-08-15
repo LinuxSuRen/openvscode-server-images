@@ -74,6 +74,7 @@ RUN \
     && mkdir /var/data \
     && cp /home/workspace/.openvscode-server /var/data/.openvscode-server -r \
     && cp /home/workspace/.sdkman /var/data/.sdkman -r \
+    && cp /home/workspace/.local /var/data/.local -r \
     && cp /home/workspace/.bashrc /var/data/.bashrc \
     && cp /home/workspace/.zshrc /var/data/.zshrc
 
